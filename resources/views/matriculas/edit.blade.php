@@ -46,7 +46,7 @@
 
             <div class="mb-3">
                 <label for="nota" class="form-label">Nota</label>
-                <input type="number" class="form-control @error('nota') is-invalid @enderror" id="nota" name="nota" value="{{ old('nota', $matricula->nota) }}" required>
+                <input type="number" max="100" class="form-control @error('nota') is-invalid @enderror" id="nota" name="nota" value="{{ old('nota', $matricula->nota) }}" required>
                 @error('nota')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

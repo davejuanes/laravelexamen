@@ -32,7 +32,9 @@
                                         <td class="text-center">{{ $course->id }}</td>
                                         <td>{{ $course->nombre }}</td>
                                         <td class="text-center">{{ $course->duracion }}</td>
-                                        <td>{{ $course->portada }}</td>
+                                        <td>
+                                            <a href="{{ $course->portada }}" target="_blank">Adjunto</a>
+                                        </td>
                                         <td class="text-center">{{ date('d/m/Y', strtotime($course->fechainicio)) }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('courses.edit', $course->id) }}"

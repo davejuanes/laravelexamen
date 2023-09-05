@@ -38,7 +38,7 @@
 
         <div class="mb-3">
             <label for="ci" class="form-label">Cédula de Identidad</label>
-            <input type="text" class="form-control @error('ci') is-invalid @enderror" id="ci" name="ci" value="{{ old('ci', $estudent->ci) }}" required>
+            <input type="text" class="form-control min="10000" @error('ci') is-invalid @enderror" id="ci" name="ci" value="{{ old('ci', $estudent->ci) }}" required>
             @error('ci')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

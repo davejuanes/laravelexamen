@@ -41,7 +41,7 @@
             <div class="mb-3">
                 <label for="ci" class="form-label">Cédula de Identidad</label>
                 <input type="number" class="form-control @error('ci') is-invalid @enderror" id="ci" name="ci"
-                    value="{{ old('ci') }}" required>
+                    value="{{ old('ci') }}" min="10000" required>
                 @error('ci')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

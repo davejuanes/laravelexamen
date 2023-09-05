@@ -21,8 +21,8 @@ class CreateMatriculasTable extends Migration
             $table->integer('nota');
             $table->timestamps();
 
-            $table->foreign('estudent_id')->references('id')->on('estudents');
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('estudent_id')->references('id')->on('estudents')->constrained()->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->constrained()->onDelete('cascade');
         });
     }
 

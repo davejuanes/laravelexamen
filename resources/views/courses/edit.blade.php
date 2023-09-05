@@ -12,11 +12,12 @@
         </div>
         <div class="mb-3">
             <label for="duracion">Duración (en horas):</label>
-            <input type="number" class="form-control" id="duracion" name="duracion" value="{{ $course->duracion }}" required>
+            <input type="number" class="form-control" max="1000" id="duracion" name="duracion" value="{{ $course->duracion }}" required>
         </div>
         <div class="mb-3">
             <label for="portada">Portada:</label>
-            <input type="text" class="form-control" id="portada" name="portada" value="{{ $course->portada }}" required>
+            <input type="file" class="form-control" id="portada" name="portada" required>
+            <a href="{{ $course->portada }}">Adjunto</a>
         </div>
         <div class="mb-3">
             <label for="fechainicio">Fecha de Inicio:</label>

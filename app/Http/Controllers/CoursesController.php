@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CoursesController extends Controller
 {
@@ -40,7 +41,19 @@ class CoursesController extends Controller
 
         $course->nombre = $request->nombre;
         $course->duracion = $request->duracion;
-        $course->portada = $request->portada;
+
+        if ($request->hasFile('portada')) {
+            $request->validate([
+                'portada' => 'required|image|mimes:jpeg,png,jpg,gif'
+            ]);
+
+            $adjunto = $request->file('portada')->store('public/adjuntos');
+
+            $url = Storage::url($adjunto);
+
+            $course->portada = $url;
+        }
+
         $course->fechainicio = $request->fechainicio;
 
         $course->save();
@@ -84,7 +97,19 @@ class CoursesController extends Controller
 
         $course->nombre = $request->nombre;
         $course->duracion = $request->duracion;
-        $course->portada = $request->portada;
+
+        if ($request->hasFile('portada')) {
+            $request->validate([
+                'portada' => 'required|image|mimes:jpeg,png,jpg,gif'
+            ]);
+
+            $adjunto = $request->file('portada')->store('public/adjuntos');
+
+            $url = Storage::url($adjunto);
+
+            $course->portada = $url;
+        }
+
         $course->fechainicio = $request->fechainicio;
 
         $course->save();
