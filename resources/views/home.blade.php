@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Bienvenido al Sistema de Control Estudiantil!') }}
                 </div>
             </div>
         </div>

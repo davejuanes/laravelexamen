@@ -25,7 +25,7 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new Course;
+
+        $course->nombre = $request->nombre;
+        $course->duracion = $request->duracion;
+        $course->portada = $request->portada;
+        $course->fechainicio = $request->fechainicio;
+
+        $course->save();
+
+        return redirect()->route('courses.index')->with('success', 'Curso creado exitosamente.');
     }
 
     /**
@@ -58,7 +67,8 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view('courses.edit', compact('course'));
     }
 
     /**
@@ -70,7 +80,16 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);
+
+        $course->nombre = $request->nombre;
+        $course->duracion = $request->duracion;
+        $course->portada = $request->portada;
+        $course->fechainicio = $request->fechainicio;
+
+        $course->save();
+
+        return redirect()->route('courses.index')->with('success', 'Curso actualizado exitosamente.');
     }
 
     /**
@@ -81,6 +100,9 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+
+        return redirect()->route('courses.index')->with('success', 'Curso eliminado exitosamente.');
     }
 }

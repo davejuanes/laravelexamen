@@ -13,7 +13,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Listado') }}</div>
+                    <div class="card-header">{{ __('Listado de estudiantes') }}</div>
                     <div class="card-body">
                         <table class="table table-striped">
                             <thead>
