@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Estudent;
+use App\Models\Matricula;
+use DB;
 use Illuminate\Http\Request;
 
-class MatriculasController extends Controller
+
+class MatriculasController  extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +18,13 @@ class MatriculasController extends Controller
      */
     public function index()
     {
-        //
+        $matriculas = DB::table('matriculas as m')
+        ->join('estudents as e', 'e.id', '=', 'm.estudent_id')
+        ->join('courses as c', 'c.id', '=', 'm.course_id')
+        ->select('*', 'm.id AS matricula_id', 'c.nombre AS nombre_curso', 'e.nombre AS nombre_estudent')
+        ->get();
+        
+        return view('matriculas.index', compact('matriculas'));
     }
 
     /**
@@ -23,7 +34,10 @@ class MatriculasController extends Controller
      */
     public function create()
     {
-        //
+        $estudents = Estudent::all();
+
+        $courses = Course::all();
+        return view('matriculas.create', compact('estudents', 'courses'));
     }
 
     /**
@@ -34,7 +48,16 @@ class MatriculasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $matricula = new Matricula;
+
+        $matricula->estudent_id = $request->estudent_id;
+        $matricula->course_id = $request->course_id;
+        $matricula->fechamatriculacion = $request->fechamatriculacion;
+        $matricula->nota = $request->nota;
+
+        $matricula->save();
+
+        return redirect()->route('matriculas.index')->with('success', 'Matricula creada exitosamente.');
     }
 
     /**
@@ -56,7 +79,12 @@ class MatriculasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $matricula = Matricula::find($id);
+
+        $estudents = Estudent::all();
+        
+        $courses = Course::all();
+        return view('matriculas.edit', compact('matricula', 'estudents', 'courses'));
     }
 
     /**
@@ -68,7 +96,16 @@ class MatriculasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $matricula = Matricula::find($id);
+
+        $matricula->estudent_id = $request->estudent_id;
+        $matricula->course_id = $request->course_id;
+        $matricula->fechamatriculacion = $request->fechamatriculacion;
+        $matricula->nota = $request->nota;
+
+        $matricula->save();
+
+        return redirect()->route('matriculas.index')->with('success', 'Matricula creada exitosamente.');
     }
 
     /**
@@ -79,6 +116,9 @@ class MatriculasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $matricula = Matricula::find($id);
+        $matricula->delete();
+
+        return redirect()->route('matriculas.index')->with('success', 'Matricula eliminada exitosamente.');
     }
 }
