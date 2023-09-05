@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Editar matricula</h1>
-        <form method="POST" action="{{ route('matriculas.update', $matricula->id) }}">
+        <form method="POST" action="{{ route('matriculas.update', $matricula->id) }}" class="needs-validation" novalidate>
             @csrf
             @method('PUT')
 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h2>Crear Nuevo Curso</h2>
-    <form method="POST" action="{{ route('courses.store') }}">
+    <form method="POST" action="{{ route('courses.store') }}" class="needs-validation" novalidate>
         @csrf
         <div class="mb-3">
             <label for="nombre">Nombre:</label>

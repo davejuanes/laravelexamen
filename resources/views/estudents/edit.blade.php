@@ -10,9 +10,6 @@
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre', $estudent->nombre) }}" required>
-            @error('nombre')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
         </div>
 
         <div class="mb-3">
